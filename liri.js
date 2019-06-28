@@ -20,7 +20,7 @@ inquirer.prompt([{
                 inquirer.prompt([{
                     type: "input",
                     name: "songName",
-                    message: "search for song?"
+                    message: "search for a song!"
 
                 }]).then(function(nextQuestion) {
                     console.log(nextQuestion.songName);
@@ -34,7 +34,7 @@ inquirer.prompt([{
                     spotify.search({
                         type: 'track',
                         query: songName
-                    }, function(err, response) {
+                    }, function (err, response) {
                         if (err) {
                             return console.log('Error occurred: ' + err);
                         }
@@ -42,13 +42,11 @@ inquirer.prompt([{
                         for (var i = 0; i < response.tracks.items.length; i++) {
                             var artistName = response.tracks.items[i].artist[0].name;
                             var albumName = response.tracks.items[i].name;
-                            var albumSong = response.tracks.items[i].album.album_type;
                             var previewLink = response.tracks.items[i].preview_url;
 
                             console.log("*************************************************");
-                            console.log("Artist Name:" + artistName);
-                            console.log("Album Name:" + albumName);
-                            console.log("The Album song is from : " + albumSong);
+                            console.log("Artist:" + artistName);
+                            console.log("Album:" + albumName);
                             console.log("Preview link: " + previewLink);
                             console.log("******************************************************");
 
