@@ -2,9 +2,10 @@ require("dotenv").config();
 var keys = require("./keys.js");
 var spotify = require('node-spotify-api');
 var spotify = new spotify(keys.spotify);
-// var axios = require("axios");
-// var moment = require("moment");
-// var fs = require("fs");
+var axios = require("axios");
+var moment = require("moment");
+var fs = require("fs");
+
 
 // questions for user
 inquirer.prompt([{
@@ -16,18 +17,18 @@ inquirer.prompt([{
 
     // spotify search
     .then(function(result) {
-            if (result.userInput === "spotify-this-song") {
+            if (result.userInput === "spotify-thisnode") {
                 inquirer.prompt([{
                     type: "input",
                     name: "songName",
                     message: "search for a song!"
 
-                }]).then(function(nextQuestion) {
-                    console.log(nextQuestion.songName);
+                }]).then(function(Question) {
+                    console.log(userInput.songName);
 
-                    var songName = nextQuestion.songName;
+                    var songName = userInput.songName;
                     //
-                    if (nextQuestion.songName === "") {
+                    if (userInput.songName === "") {
                         songName = "Bohemian Rapsody"
                     }
                     //
