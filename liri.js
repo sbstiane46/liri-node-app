@@ -1,23 +1,35 @@
 require("dotenv").config();
 var keys = require("./keys.js");
 var spotify = require('node-spotify-api');
-var spotify = new spotify(keys.spotify);
+var inquirer = require("inquirer");
 var axios = require("axios");
 var moment = require("moment");
 var fs = require("fs");
+var spotify = new spotify(keys.spotify);
 
+// API keys...
+var songName;
+
+start_liri();
+
+function start_liri() {
 
 // questions for user
-inquirer.prompt([{
-        type: "list",
-        name: "userInput",
-        message: "which artist or song?",
-        choose: ["spotify-this-song"]
-    }])
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "userInput",
+            message: "what do you want to search for?",
+            choose: ["concert-this", "spotify-this-song", "movie-this", "do-what-it-says"]
+        }])
 
-    // spotify search
+    
     .then(function(result) {
-            if (result.userInput === "spotify-thisnode") {
+
+        append_log("*********** USER REQUEST - "  + moment().format("MM/DD/YYYY, h:mm:ss a ") + "***********");
+        // append_log("USER REQUEST: + response.action");
+        
+            if (result.userInput === "spotify-this-node") {
                 inquirer.prompt([{
                     type: "input",
                     name: "songName",
@@ -54,5 +66,6 @@ inquirer.prompt([{
                         }
                     })
                 })
-            }
-        })
+            } 
+            })
+        }
