@@ -20,7 +20,7 @@ function start_liri() {
             type: "list",
             name: "userInput",
             message: "what do you want to search for?",
-            choose: ["concert-this", "spotify-this-song", "movie-this", "do-what-it-says"]
+            choices: ["concert-this", "spotify-this-song", "movie-this", "do-what-it-says"]
         }])
 
     
@@ -34,19 +34,20 @@ function start_liri() {
                     type: "input",
                     name: "search-this",
                     message: "search for what?"
-
                 }]).then(function(Q2response) {
                     append_log("USER SEARCH: " + Q2response["search-for"]);
 
-                    switch(Q4response.userInput) {
+                    console.log('response: ', Q1response.userInput);
+
+                    switch(Q1response.userInput) {
                         case "concert-this": 
-                        search_concerts(Q2response["search-what"]);
+                        search_concerts(Q2response["search-this"]);
                         break;
                     case "movie-this":
-                        search_movies(Q2response["search-what"]);
+                        search_movies(Q2response["search-this"]);
                         break;
                     case "spotify-this":
-                        search_songs(Q2response["search-what"]);
+                        search_songs(Q2response["search-this"]);
                         break;
                     }
 
@@ -161,15 +162,13 @@ function start_liri() {
             append_log(plot);
             append_log(actors);
 
-            console.log(" ");
             append_log(start_liri, 2000);
-            }
+            })
             .catch(function (error) {
                 if (error.response) {
                     console.log("oops, something went wrong");
                 }
-            })
-        )
+            });
     }
 
     function search_songs(songName) {
