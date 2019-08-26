@@ -37,8 +37,6 @@ function start_liri() {
                 }]).then(function(Q2response) {
                     append_log("USER SEARCH: " + Q2response["search-for"]);
 
-                    console.log('response: ', Q1response.userInput);
-
                     switch(Q1response.userInput) {
                         case "concert-this": 
                         search_concerts(Q2response["search-this"]);
@@ -54,7 +52,7 @@ function start_liri() {
                 })
             } else {
                 console.log("You get this");
-
+                git commit -m "Fixed several errors regarding switch case & catch handler for axios"
                 fs.readFile("random.txt" , "uft8", function (error, data) {
                     if (error) {
                         console.log(error);
