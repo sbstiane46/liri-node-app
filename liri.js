@@ -52,7 +52,7 @@ function start_liri() {
                 })
             } else {
                 console.log("You get this");
-                git commit -m "Fixed several errors regarding switch case & catch handler for axios"
+
                 fs.readFile("random.txt" , "uft8", function (error, data) {
                     if (error) {
                         console.log(error);
